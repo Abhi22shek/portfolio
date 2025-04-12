@@ -155,13 +155,6 @@ const Contact = () => {
                   value: 'Indore, MP',
                   gradient: 'from-purple-500/20 to-purple-500/5',
                   href: '#'
-                },
-                {
-                  icon: MdMessage,
-                  label: 'Social',
-                  value: '@johndoe',
-                  gradient: 'from-yellow-500/20 to-yellow-500/5',
-                  href: '#'
                 }
               ].map(({ icon: Icon, label, value, gradient, href }) => (
                 <div key={label} className="flex items-center gap-4 sm:gap-6">
