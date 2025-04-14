@@ -20,7 +20,7 @@ const projects = [
   {
     title: 'Interactive Quiz platfform',
     description: 'An interactive quiz platform with timed quizzes, answer feedback highlighting wrong and correct options, and a history tracking feature',
-    image: './project-.png',
+    image: './project-2.png',
     technologies: ['React','Tailwind'],
     category: 'frontend',
     github: 'https://github.com/Abhi22shek/Interactive-Quiz.git',
