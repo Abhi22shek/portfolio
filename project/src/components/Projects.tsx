@@ -26,6 +26,7 @@ const projects = [
     github: 'https://github.com/Abhi22shek/Interactive-Quiz.git',
     live: 'https://interactive-quiz-five.vercel.app',
     featured: true
+  },
   {
     title: 'Imagify Text to photos genration',
     description: 'A fully responsive AI SaaS MERN stack application where users can securely log in, buy credits using Razorpay, and generate photos from text. Users spend credits to create AI-generated images and can download them after generation.',
@@ -35,9 +36,7 @@ const projects = [
     github: 'https://github.com/Abhi22shek/Imagify.git',
     live: 'https://imagify-beige-three.vercel.app/',
     featured: true
-  }
-  },
-  
+  }  
 ];
 
 const categories = [
