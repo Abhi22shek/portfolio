@@ -113,7 +113,7 @@ const Hero = () => {
                     </>
                   ) : (
                     <>
-                      <FaDownload className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <FaDownload className="w-4 h-4 sm:size-4" />
                       Download Resume
                       <FaArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                     </>
