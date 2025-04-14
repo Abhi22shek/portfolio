@@ -18,6 +18,16 @@ const projects = [
     featured: true
   },
   {
+    title: 'Imagify Text to photos genration',
+    description: 'A fully responsive AI SaaS MERN stack application where users can securely log in, buy credits using Razorpay, and generate photos from text. Users spend credits to create AI-generated images and can download them after generation.',
+    image: './project-3.png',
+    technologies: ['React', 'Node', 'Express', 'MongoDB', 'Tailwind', 'Razorpay' ,'Clipdrop Api' , ],
+    category: 'backend',
+    github: 'https://github.com/Abhi22shek/Imagify.git',
+    live: 'https://imagify-beige-three.vercel.app/',
+    featured: true
+  },
+   {
     title: 'Interactive Quiz platfform',
     description: 'An interactive quiz platform with timed quizzes, answer feedback highlighting wrong and correct options, and a history tracking feature',
     image: './project-2.png',
@@ -27,16 +37,6 @@ const projects = [
     live: 'https://interactive-quiz-five.vercel.app',
     featured: true
   },
-  {
-    title: 'Imagify Text to photos genration',
-    description: 'A fully responsive AI SaaS MERN stack application where users can securely log in, buy credits using Razorpay, and generate photos from text. Users spend credits to create AI-generated images and can download them after generation.',
-    image: './project-3.png',
-    technologies: ['React', 'Node', 'Express', 'MongoDB', 'Tailwind', 'Razorpay' ,'Clipdrop Api' , ],
-    category: 'backend',
-    github: 'https://github.com/Abhi22shek/Imagify.git',
-    live: 'https://imagify-beige-three.vercel.app/',
-    featured: true
-  }  
 ];
 
 const categories = [
