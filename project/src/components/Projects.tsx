@@ -20,8 +20,8 @@ const projects = [
   {
     title: 'Interactive Quiz platfform',
     description: 'An interactive quiz platform with timed quizzes, answer feedback highlighting wrong and correct options, and a history tracking feature',
-    image: './project-2.png',
-    technologies: ['React',  'tailwind'],
+    image: './project-3.png',
+    technologies: ['React',  'Nodejs', 'express', 'mondoDb', 'taiwind , 'razorpay', 'Clipdrop Api' ,'JWT/bcrypt],
     category: 'frontend',
     github: 'https://github.com/Abhi22shek/Interactive-Quiz.git',
     live: 'https://interactive-quiz-five.vercel.app',
