@@ -11,7 +11,7 @@ const projects = [
   {
     title: 'FullStack Real=time Chat Application',
     description: ' I built a real-time chat application where users can securely sign up, log in, and exchange instant messages, images, and documents. The app shows online/offline status, allows profile and theme customization, and works smoothly on both desktop and mobile. User-friendly notifications and error handling ensure a seamless experience.',
-    image: './project-4(2).png',
+    image: './project-4 (2).png',
     technologies: ["React",
       "Vite",
       "Zustand",
