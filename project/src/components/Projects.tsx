@@ -7,14 +7,30 @@ import ThemeToggle from './ThemeToggle';
 import DarkThemeParticles from './DarkThemeParticles';
 
 const projects = [
+
   {
-    title: '3d iphone website',
-    description: 'Developed a fully responsive 3D iPhone showcase website with an interactive user interface, optimized for all screen sizes. .',
-    image: './project-1.png',
-    technologies: ['React', 'Threejs', 'Gsap', 'tailwind'],
-    category: 'frontend',
-    github: 'https://github.com/Abhi22shek/Iphone_website.git',
-    live: 'https://iphone-website-one.vercel.app/',
+    title: 'FullStack Real=time Chat Application',
+    description: ' I built a real-time chat application where users can securely sign up, log in, and exchange instant messages, images, and documents. The app shows online/offline status, allows profile and theme customization, and works smoothly on both desktop and mobile. User-friendly notifications and error handling ensure a seamless experience.',
+    image: './project-4.png',
+    technologies: ["React",
+      "Vite",
+      "Zustand",
+      "TailwindCSS",
+      "DaisyUI",
+      "Axios",
+      "React Router",
+      "Node.js",
+      "Express.js",
+      "Socket.io",
+      "Multer",
+      "Cloudinary",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "httpOnly cookies"],
+    category: 'backend',
+    github: 'https://github.com/Abhi22shek/fullStack_Chat-App.git',
+    live: 'https://fullstack-chat-app-ayqr.onrender.com/',
     featured: true
   },
   {
@@ -25,6 +41,16 @@ const projects = [
     category: 'backend',
     github: 'https://github.com/Abhi22shek/Imagify.git',
     live: 'https://imagify-beige-three.vercel.app/',
+    featured: true
+  },
+  {
+    title: '3d iphone website',
+    description: 'Developed a fully responsive 3D iPhone showcase website with an interactive user interface, optimized for all screen sizes. .',
+    image: './project-1.png',
+    technologies: ['React', 'Threejs', 'Gsap', 'tailwind'],
+    category: 'frontend',
+    github: 'https://github.com/Abhi22shek/Iphone_website.git',
+    live: 'https://iphone-website-one.vercel.app/',
     featured: true
   },
    {
