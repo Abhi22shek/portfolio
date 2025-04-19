@@ -311,6 +311,48 @@ p {
   @apply w-4 h-4 sm:w-3 sm:h-5 md:w-6 md:h-6;
 }
 
+.project-link-icon {
+  @apply w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300;
+}
+
+/* Project link container styling */
+.project-link-container {
+  @apply p-2.5 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full 
+         hover:bg-white/20 transition-all duration-300
+         hover:shadow-[0_0_15px_rgba(255,255,255,0.2)];
+}
+
+/* Enhanced mobile styling for project icons */
+@media (max-width: 768px) {
+  /* Larger project link icons for mobile */
+  .project-link-icon {
+    @apply w-6 h-6;
+  }
+  
+  /* Larger tap targets for mobile */
+  .project-link-container {
+    @apply p-3;
+  }
+}
+
+/* Add icon hover effects */
+.project-link-icon-github:hover {
+  @apply text-[#6e5494];
+}
+
+.project-link-icon-live:hover {
+  @apply text-maroon;
+}
+
+
+
+
+
+
+
+
+
+
 /* Dark Theme Styles - Black and White Version */
 :root.dark-theme {
   --maroon-rgb: 0 0 0; /* Pure black */
