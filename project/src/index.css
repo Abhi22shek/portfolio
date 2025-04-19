@@ -308,7 +308,7 @@ p {
 
 /* Responsive icons */
 .responsive-icon {
-  @apply w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6;
+  @apply w-4 h-4 sm:w-3 sm:h-5 md:w-6 md:h-6;
 }
 
 /* Dark Theme Styles - Black and White Version */
