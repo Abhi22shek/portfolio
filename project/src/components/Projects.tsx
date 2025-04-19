@@ -249,7 +249,7 @@ const Projects = () => {
           )}
         </motion.div>
 
-        <div className="flex justify-center items-center gap-4 mb-16">
+        <div className="flex justify-center  gap-4 mb-16">
           {categories.map(({ id, label, icon: Icon }) => (
             <motion.button
               key={id}
