@@ -249,12 +249,12 @@ const Projects = () => {
           )}
         </motion.div>
 
-        <div className="flex justify-center gap-4 mb-16">
+        <div className="flex justify-center items-center gap-4 mb-16">
           {categories.map(({ id, label, icon: Icon }) => (
             <motion.button
               key={id}
               onClick={() => setActiveCategory(id)}
-              className={`px-6 py-3 rounded-xl flex items-center gap-2 transition-all ${
+              className={`px-10 py-3 rounded-xl flex items-center gap-2 transition-all ${
                 activeCategory === id
                   ? 'bg-gradient-to-r from-maroon to-maroon/80 text-white shadow-lg shadow-maroon/25'
                   : 'bg-white/5 text-white/80 hover:bg-white/10'
