@@ -6,12 +6,12 @@
 
 @layer base {
   :root {
-    --maroon-rgb: 224 9 9;
-    --dark-maroon: #230606;
+    --primary-rgb: 255 255 255;
+    --dark-bg: #121212;
   }
 
   body {
-    @apply bg-gradient-to-r from-[#230606] via-[#1a0404] to-[#111010] text-white font-inter scroll-smooth;
+    @apply bg-gradient-to-r from-black via-[#121212] to-[#1a1a1a] text-white font-inter scroll-smooth;
     background-attachment: fixed;
   }
 
@@ -90,7 +90,7 @@
          hover:shadow-[0_0_30px_rgba(224,9,9,0.15)] hover:-translate-y-1;
   background: linear-gradient(
     145deg,
-    rgba(255,255,255,0.03) 0%,
+    rgba(38, 37, 37, 0.03) 0%,
     rgba(255,255,255,0.01) 100%
   );
 }
@@ -308,7 +308,7 @@ p {
 
 /* Responsive icons */
 .responsive-icon {
-  @apply w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6;
+  @apply w-4 h-4 sm:w-3 sm:h-5 md:w-6 md:h-6;
 }
 
 /* Dark Theme Styles - Black and White Version */
@@ -318,7 +318,7 @@ p {
 }
 
 :root.dark-theme body {
-  background: linear-gradient(135deg, #000000 0%, #121212 50%, #000000 100%);
+  background: linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%);
   background-attachment: fixed;
 }
 
@@ -470,4 +470,60 @@ html, body {
 
 .heading-responsive {
   font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+/* Add these styles to the end of your index.css file */
+
+/* Enhanced mobile touch targets */
+@media (max-width: 768px) {
+  button, 
+  a.button-glow,
+  .nav-link,
+  .project-card a {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Larger icons for mobile */
+  .responsive-icon {
+    font-size: 1.5rem;
+  }
+  
+  /* Improved spacing for mobile buttons */
+  .button-glow {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+  }
+  
+  /* Larger star icon for featured projects on mobile */
+  .project-card .text-maroon.fill-maroon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  /* Improved tap targets for project cards */
+  .project-card .absolute.inset-0 a {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
+  
+  /* Admin button improvements */
+  .text-xs.text-white\/50 {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Pulse animation for button feedback */
+.button-tap-feedback {
+  animation: button-pulse 0.3s ease-out;
+}
+
+@keyframes button-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
 }
