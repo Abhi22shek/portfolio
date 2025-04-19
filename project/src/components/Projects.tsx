@@ -254,7 +254,7 @@ const Projects = () => {
             <motion.button
               key={id}
               onClick={() => setActiveCategory(id)}
-              className={`px-10 py-3 rounded-xl flex items-center gap-2 transition-all ${
+              className={`px-4 py-3 justify-center rounded-xl flex items-center gap-2 transition-all ${
                 activeCategory === id
                   ? 'bg-gradient-to-r from-maroon to-maroon/80 text-white shadow-lg shadow-maroon/25'
                   : 'bg-white/5 text-white/80 hover:bg-white/10'
