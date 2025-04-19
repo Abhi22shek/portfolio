@@ -144,7 +144,7 @@ const Hero = () => {
                   >
                     <div className="absolute inset-0 rounded-full bg-white/20 blur-lg group-hover:bg-white/30 transition-all duration-300" />
                     <div className="relative p-2 sm:p-3 rounded-full bg-gradient-to-r from-white/10 to-transparent border border-white/20 group-hover:border-white/40 transition-all duration-300">
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-white transition-colors" />
+                      <Icon className="w-10 sm:w-5 sm:h-5 text-white group-hover:text-white transition-colors" />
                     </div>
                   </motion.a>
                 ))}
