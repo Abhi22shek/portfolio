@@ -398,7 +398,7 @@ const Projects = () => {
                               href={project.github}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors"
+                              className="p-2.5 bg-white/10 rounded-full  backdrop-blur-sm hover:bg-white/20 transition-colors"
                               whileHover={{ scale: 1.1, y: -3 }}
                               whileTap={{ scale: 0.9 }}
                             >
@@ -408,7 +408,7 @@ const Projects = () => {
                               href={project.live}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="p-2 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors"
+                              className="p-2.5 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors"
                               whileHover={{ scale: 1.1, y: -3 }}
                               whileTap={{ scale: 0.9 }}
                             >
