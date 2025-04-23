@@ -18,11 +18,6 @@ import {
   SocketIOIcon,
 } from '../utils/logo';
 
-
-// Custom React Logo SVG Component
-
-
-
 const skills = [
   {
     name: "HTML",
@@ -110,20 +105,6 @@ const skills = [
   },
 ];
 
-// Real-time communication skills details
-// const realTimeSkills = [
-//   {
-//     name: 'WebSocket',
-//     description: 'Implemented real-time bidirectional communication for live chat applications, notifications, and collaborative features.',
-//     projects: ['Live Chat System', 'Real-time Dashboard', 'Collaborative Editor']
-//   },
-//   {
-//     name: 'Socket.IO',
-//     description: 'Built scalable real-time applications with automatic reconnection, room-based messaging, and event handling.',
-//     projects: ['Multiplayer Game', 'Live Collaboration Tool', 'Real-time Analytics']
-//   }
-// ];
-
 const About = () => {
   return (
     <section id="about" className="py-20 sm:py-32 relative overflow-hidden">
@@ -147,20 +128,41 @@ const About = () => {
             -ms-overflow-style: none !important;
             scrollbar-width: none !important;
           }
+          
+          /* Enhanced fog effect for marquee containers */
+          .marquee-container {
+            position: relative !important;
+            overflow: hidden !important;
+          }
+          
+          .marquee-container::before,
+          .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 15%;
+            z-index: 10;
+            pointer-events: none;
+          }
+          
+          .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+          }
+          
+          .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+          }
 
           .marquee-container.left-marquee {
-            overflow: hidden !important;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent) !important;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent) !important;
             height: auto !important;
             position: relative;
             z-index: 1;
           }
 
           .marquee-container.right-marquee {
-            overflow: hidden !important;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent) !important;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent) !important;
             height: auto !important;
             position: relative;
             z-index: 1;
@@ -184,7 +186,7 @@ const About = () => {
           
           .skill-card:hover {
             transform: scale(1.08) !important;
-            z-index: 10 !important;
+            z-index: 20 !important; /* Increased z-index to appear above fog */
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3) !important;
           }
           
@@ -222,6 +224,37 @@ const About = () => {
             animation: float 3s ease-in-out infinite;
           }
 
+          /* Card entrance and exit animations */
+          @keyframes fadeInRight {
+            from {
+              opacity: 0;
+              transform: translateX(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+          
+          @keyframes fadeInLeft {
+            from {
+              opacity: 0;
+              transform: translateX(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+          
+          .left-enter {
+            animation: fadeInRight 0.5s forwards;
+          }
+          
+          .right-enter {
+            animation: fadeInLeft 0.5s forwards;
+          }
+
           /* Additional fixes for specific browsers */
           @supports (-moz-appearance:none) {
             .marquee-container, .marquee, .skill-container {
@@ -240,7 +273,7 @@ const About = () => {
       </style>
 
       <div className="container mx-auto px-4 relative z-10">
-      <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -253,163 +286,163 @@ const About = () => {
           </p>
         </motion.div>
         
-        {/* Enhanced Marquee Section */}
+        {/* Skills Marquee Section with Enhanced Fog Effect */}
         <div className="space-y-8 overflow-hidden sm:space-y-16 skill-container">
-          <Marquee
-            // gradient={true}
-            gradientColor="#000000"
-            gradientWidth={100}
-            speed={30}
-            direction="left"
-            className="py-4 sm:py-8 left-marquee"
-            pauseOnHover={true}
-            style={{ height: "auto" }}
-          >
-            {skills.slice(0, skills.length / 2).map((skill, index) => {
-              const Icon = skill.icon;
-              return (
-                <motion.div
-                  key={skill.name}
-                  className="mx-4 sm:mx-8 glass-effect px-4 sm:px-8 py-3 sm:py-6 rounded-xl sm:rounded-2xl flex items-center gap-3 sm:gap-6 skill-card floating-animation tilt-effect"
-                  style={{ 
-                    minWidth: "200px", 
-                    maxWidth: "300px",
-                    animationDelay: `${index * 0.2}s`,
-                    "--glow-color": `${skill.color}50`
-                  } as React.CSSProperties}
-                  whileHover={{
-                    boxShadow: `0 0 30px ${skill.color}30`,
-                    borderColor: `${skill.color}50`,
-                    y: -5
-                  }}
-                >
-                  <div className="relative group overflow-hidden">
-                    <div
-                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[var(--start-color)] to-[var(--end-color)] opacity-20 blur-lg group-hover:opacity-40 transition-opacity duration-500"
-                      style={
-                        {
-                          "--start-color": skill.color,
-                          "--end-color": `${skill.color}50`,
-                        } as React.CSSProperties
-                      }
-                    />
-                    <div className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-all duration-500 pulse-animation" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <motion.div
-                        initial={{ rotate: 0 }}
-                        whileHover={{ rotate: 360, scale: 1.2 }}
-                        transition={{ duration: 0.8, ease: "easeInOut" }}
-                        className="tilt-content"
-                      >
-                        <Icon
-                          size={24}
-                          className="sm:w-8 sm:h-8"
-                          style={{ color: skill.color }}
-                        />
-                      </motion.div>
-                    </div>
-                  </div>
-                  <div className="flex-1 min-w-0 tilt-content">
-                    <h3
-                      className="text-sm sm:text-xl font-semibold mb-2 sm:mb-3 truncate"
-                      style={{ color: skill.color }}
-                    >
-                      {skill.name}
-                    </h3>
-                    <div className="w-full h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden skill-progress">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="h-full rounded-full glow-on-hover"
-                        style={{
-                          backgroundColor: skill.color,
-                          boxShadow: `0 0 20px ${skill.color}50`,
-                        }}
+          {/* First row of skills with left direction */}
+          <div className="relative">
+            <Marquee
+              speed={30}
+              direction="left"
+              className="py-4 sm:py-8 left-marquee"
+              pauseOnHover={true}
+              style={{ height: "auto" }}
+            >
+              {skills.slice(0, skills.length / 2).map((skill, index) => {
+                const Icon = skill.icon;
+                return (
+                  <motion.div
+                    key={skill.name}
+                    className="mx-4 sm:mx-8 glass-effect px-4 sm:px-8 py-3 sm:py-6 rounded-xl sm:rounded-2xl flex items-center gap-3 sm:gap-6 skill-card floating-animation tilt-effect"
+                    style={{ 
+                      minWidth: "200px", 
+                      maxWidth: "300px",
+                      animationDelay: `${index * 0.2}s`,
+                      "--glow-color": `${skill.color}50`
+                    } as React.CSSProperties}
+                    whileHover={{
+                      boxShadow: `0 0 30px ${skill.color}30`,
+                      borderColor: `${skill.color}50`,
+                      y: -5
+                    }}
+                  >
+                    <div className="relative group overflow-hidden">
+                      <div
+                        className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[var(--start-color)] to-[var(--end-color)] opacity-20 blur-lg group-hover:opacity-40 transition-opacity duration-500"
+                        style={
+                          {
+                            "--start-color": skill.color,
+                            "--end-color": `${skill.color}50`,
+                          } as React.CSSProperties
+                        }
                       />
+                      <div className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-all duration-500 pulse-animation" style={{ animationDelay: `${index * 0.1}s` }}>
+                        <motion.div
+                          initial={{ rotate: 0 }}
+                          whileHover={{ rotate: 360, scale: 1.2 }}
+                          transition={{ duration: 0.8, ease: "easeInOut" }}
+                          className="tilt-content"
+                        >
+                          <Icon
+                            size={24}
+                            className="sm:w-8 sm:h-8"
+                            style={{ color: skill.color }}
+                          />
+                        </motion.div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </Marquee>
+                    <div className="flex-1 min-w-0 tilt-content">
+                      <h3
+                        className="text-sm sm:text-xl font-semibold mb-2 sm:mb-3 truncate"
+                        style={{ color: skill.color }}
+                      >
+                        {skill.name}
+                      </h3>
+                      <div className="w-full h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden skill-progress">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: 0.2 }}
+                          className="h-full rounded-full glow-on-hover"
+                          style={{
+                            backgroundColor: skill.color,
+                            boxShadow: `0 0 20px ${skill.color}50`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </Marquee>
+          </div>
 
-          <Marquee
-            // gradient={true}
-            gradientColor="#000000"
-            gradientWidth={100}
-            speed={20}
-            direction="right"
-            className="py-4 sm:py-8 right-marquee"
-            pauseOnHover={true}
-            style={{ height: "auto" }}
-          >
-            {skills.slice(skills.length / 2).map((skill, index) => {
-              const Icon = skill.icon;
-              return (
-                <motion.div
-                  key={skill.name}
-                  className="mx-4 sm:mx-8 glass-effect px-4 sm:px-8 py-3 sm:py-6 rounded-xl sm:rounded-2xl flex items-center gap-3 sm:gap-6 skill-card floating-animation tilt-effect"
-                  style={{ 
-                    minWidth: "200px", 
-                    maxWidth: "300px",
-                    animationDelay: `${index * 0.2}s`,
-                    "--glow-color": `${skill.color}50`
-                  } as React.CSSProperties}
-                  whileHover={{
-                    boxShadow: `0 0 30px ${skill.color}30`,
-                    borderColor: `${skill.color}50`,
-                    y: -5
-                  }}
-                >
-                  <div className="relative group">
-                    <div
-                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[var(--start-color)] to-[var(--end-color)] opacity-20 blur-lg group-hover:opacity-40 transition-opacity duration-500"
-                      style={
-                        {
-                          "--start-color": skill.color,
-                          "--end-color": `${skill.color}50`,
-                        } as React.CSSProperties
-                      }
-                    />
-                    <div className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-all duration-500 pulse-animation" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <motion.div
-                        initial={{ rotate: 0 }}
-                        whileHover={{ rotate: 360, scale: 1.2 }}
-                        transition={{ duration: 0.8, ease: "easeInOut" }}
-                        className="tilt-content"
-                      >
-                        <Icon
-                          size={24}
-                          className="sm:w-8 sm:h-8"
-                          style={{ color: skill.color }}
-                        />
-                      </motion.div>
-                    </div>
-                  </div>
-                  <div className="flex-1 min-w-0 tilt-content">
-                    <h3
-                      className="text-sm sm:text-xl font-semibold mb-2 sm:mb-3 truncate"
-                      style={{ color: skill.color }}
-                    >
-                      {skill.name}
-                    </h3>
-                    <div className="w-full h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden skill-progress">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="h-full rounded-full glow-on-hover"
-                        style={{
-                          backgroundColor: skill.color,
-                          boxShadow: `0 0 20px ${skill.color}50`,
-                        }}
+          {/* Second row of skills with right direction */}
+          <div className="relative">
+            <Marquee
+              speed={20}
+              direction="right"
+              className="py-4 sm:py-8 right-marquee"
+              pauseOnHover={true}
+              style={{ height: "auto" }}
+            >
+              {skills.slice(skills.length / 2).map((skill, index) => {
+                const Icon = skill.icon;
+                return (
+                  <motion.div
+                    key={skill.name}
+                    className="mx-4 sm:mx-8 glass-effect px-4 sm:px-8 py-3 sm:py-6 rounded-xl sm:rounded-2xl flex items-center gap-3 sm:gap-6 skill-card floating-animation tilt-effect"
+                    style={{ 
+                      minWidth: "200px", 
+                      maxWidth: "300px",
+                      animationDelay: `${index * 0.2}s`,
+                      "--glow-color": `${skill.color}50`
+                    } as React.CSSProperties}
+                    whileHover={{
+                      boxShadow: `0 0 30px ${skill.color}30`,
+                      borderColor: `${skill.color}50`,
+                      y: -5
+                    }}
+                  >
+                    <div className="relative group">
+                      <div
+                        className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[var(--start-color)] to-[var(--end-color)] opacity-20 blur-lg group-hover:opacity-40 transition-opacity duration-500"
+                        style={
+                          {
+                            "--start-color": skill.color,
+                            "--end-color": `${skill.color}50`,
+                          } as React.CSSProperties
+                        }
                       />
+                      <div className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-all duration-500 pulse-animation" style={{ animationDelay: `${index * 0.1}s` }}>
+                        <motion.div
+                          initial={{ rotate: 0 }}
+                          whileHover={{ rotate: 360, scale: 1.2 }}
+                          transition={{ duration: 0.8, ease: "easeInOut" }}
+                          className="tilt-content"
+                        >
+                          <Icon
+                            size={24}
+                            className="sm:w-8 sm:h-8"
+                            style={{ color: skill.color }}
+                          />
+                        </motion.div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </Marquee>
+                    <div className="flex-1 min-w-0 tilt-content">
+                      <h3
+                        className="text-sm sm:text-xl font-semibold mb-2 sm:mb-3 truncate"
+                        style={{ color: skill.color }}
+                      >
+                        {skill.name}
+                      </h3>
+                      <div className="w-full h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden skill-progress">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: 0.2 }}
+                          className="h-full rounded-full glow-on-hover"
+                          style={{
+                            backgroundColor: skill.color,
+                            boxShadow: `0 0 20px ${skill.color}50`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </Marquee>
+          </div>
         </div>
       </div>
     </section>
