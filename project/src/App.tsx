@@ -13,17 +13,13 @@ import LoadingScreen from './components/LoadingScreen';
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // You can add actual asset preloading logic here if needed
-    // For now, we'll just simulate loading with the component's internal timer
-  }, []);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
 
   return (
-    
+   
       <div className="app-container">
         <AnimatePresence mode="wait">
           {isLoading ? (
@@ -43,6 +39,7 @@ function App() {
           )}
         </AnimatePresence>
       </div>
+      
   );
 }
 
