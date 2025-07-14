@@ -1,0 +1,105 @@
+@@ .. @@
+ /* Dark Theme Styles - Black and White Version */
+-:root.dark-theme {
++html.dark {
+   --maroon-rgb: 0 0 0; /* Pure black */
+   --dark-maroon: #000000;
+ }
+
+-:root.dark-theme body {
++html.dark body {
+   background: linear-gradient(135deg, #000000 0%, #121212 50%, #000000 100%);
+   background-attachment: fixed;
+ }
+
+ /* Monochrome effects for dark theme */
+-:root.dark-theme .project-card {
++html.dark .project-card {
+   @apply bg-black/30 backdrop-blur-md border-gray-800/30;
+   box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+   transition: all 0.4s ease;
+ }
+
+-:root.dark-theme .project-card:hover {
++html.dark .project-card:hover {
+   @apply border-white/20;
+   box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+ }
+
+-:root.dark-theme .button-primary {
++html.dark .button-primary {
+   background: linear-gradient(45deg, #000000, #333333);
+   @apply text-white shadow-lg shadow-black/30;
+ }
+
+-:root.dark-theme .button-glow:hover {
++html.dark .button-glow:hover {
+   box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+ }
+
+ /* Rich white text for headings */
+-:root.dark-theme h1, 
+-:root.dark-theme h2, 
+-:root.dark-theme h3, 
+-:root.dark-theme h4, 
+-:root.dark-theme h5, 
+-:root.dark-theme h6 {
++html.dark h1, 
++html.dark h2, 
++html.dark h3, 
++html.dark h4, 
++html.dark h5, 
++html.dark h6 {
+   @apply text-white;
+   text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+ }
+
+ /* Tech tags in dark theme */
+-:root.dark-theme .px-3.py-1.bg-gradient-to-r.from-maroon\/10 {
++html.dark .px-3.py-1.bg-gradient-to-r.from-maroon\/10 {
+   @apply from-gray-900/20 to-gray-800/10 border-gray-700/30 text-gray-300;
+ }
+
+ /* Category buttons in dark theme */
+-:root.dark-theme button.bg-gradient-to-r.from-maroon.to-maroon\/80 {
++html.dark button.bg-gradient-to-r.from-maroon.to-maroon\/80 {
+   background: linear-gradient(45deg, #000000, #333333);
+ }
+
+-:root.dark-theme button.bg-white\/5 {
++html.dark button.bg-white\/5 {
+   @apply bg-gray-900/10 hover:bg-gray-900/20;
+ }
+
+ /* Star icon in dark theme */
+-:root.dark-theme .text-maroon.fill-maroon {
++html.dark .text-maroon.fill-maroon {
+   @apply text-white fill-white;
+ }
+
+ /* Floating particles for dark theme */
+-:root.dark-theme .dark-particles {
++html.dark .dark-particles {
+   display: block;
+ }
+
+ .dark-particles {
+@@ .. @@
+ }
+
+ /* Add these theme classes to your existing CSS */
+-:root {
++html {
+   --bg-color: #000000;
+   --text-color: #ffffff;
+   --accent-color: #8B0000;
+   --secondary-bg: rgba(255, 255, 255, 0.1);
+ }
+
+-.light-theme {
++html.light {
+   --bg-color: #ffffff;
+   --text-color: #000000;
+   --accent-color: #8B0000;
+   --secondary-bg: rgba(0, 0, 0, 0.05);
+ }
