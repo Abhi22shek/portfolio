@@ -52,5 +52,6 @@
    const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
 -  const filteredProjects = projects.filter(project => {
-+  const filteredProjects = projectsData.filter(project => {
++
+]  const filteredProjects = projectsData.filter(project => {
      if (activeCategory === 'all') return project.featured;
