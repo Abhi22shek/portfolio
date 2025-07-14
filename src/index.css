@@ -1,105 +1,247 @@
-@@ .. @@
- /* Dark Theme Styles - Black and White Version */
--:root.dark-theme {
-+html.dark {
-   --maroon-rgb: 0 0 0; /* Pure black */
-   --dark-maroon: #000000;
- }
+/* Dark Theme Styles - Black and White Version */
+html.dark {
+  --maroon-rgb: 0 0 0; /* Pure black */
+  --dark-maroon: #000000;
+}
 
--:root.dark-theme body {
-+html.dark body {
-   background: linear-gradient(135deg, #000000 0%, #121212 50%, #000000 100%);
-   background-attachment: fixed;
- }
+html.dark body {
+  background: linear-gradient(135deg, #000000 0%, #121212 50%, #000000 100%);
+  background-attachment: fixed;
+}
 
- /* Monochrome effects for dark theme */
--:root.dark-theme .project-card {
-+html.dark .project-card {
-   @apply bg-black/30 backdrop-blur-md border-gray-800/30;
-   box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-   transition: all 0.4s ease;
- }
+/* Monochrome effects for dark theme */
+html.dark .project-card {
+  @apply bg-black/30 backdrop-blur-md border-gray-800/30;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+}
 
--:root.dark-theme .project-card:hover {
-+html.dark .project-card:hover {
-   @apply border-white/20;
-   box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
- }
+html.dark .project-card:hover {
+  @apply border-white/20;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
 
--:root.dark-theme .button-primary {
-+html.dark .button-primary {
-   background: linear-gradient(45deg, #000000, #333333);
-   @apply text-white shadow-lg shadow-black/30;
- }
+html.dark .button-primary {
+  background: linear-gradient(45deg, #000000, #333333);
+  @apply text-white shadow-lg shadow-black/30;
+}
 
--:root.dark-theme .button-glow:hover {
-+html.dark .button-glow:hover {
-   box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
- }
+html.dark .button-glow:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
 
- /* Rich white text for headings */
--:root.dark-theme h1, 
--:root.dark-theme h2, 
--:root.dark-theme h3, 
--:root.dark-theme h4, 
--:root.dark-theme h5, 
--:root.dark-theme h6 {
-+html.dark h1, 
-+html.dark h2, 
-+html.dark h3, 
-+html.dark h4, 
-+html.dark h5, 
-+html.dark h6 {
-   @apply text-white;
-   text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
- }
+/* Rich white text for headings */
+html.dark h1, 
+html.dark h2, 
+html.dark h3, 
+html.dark h4, 
+html.dark h5, 
+html.dark h6 {
+  @apply text-white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
 
- /* Tech tags in dark theme */
--:root.dark-theme .px-3.py-1.bg-gradient-to-r.from-maroon\/10 {
-+html.dark .px-3.py-1.bg-gradient-to-r.from-maroon\/10 {
-   @apply from-gray-900/20 to-gray-800/10 border-gray-700/30 text-gray-300;
- }
+/* Tech tags in dark theme */
+html.dark .px-3.py-1.bg-gradient-to-r.from-maroon\/10 {
+  @apply from-gray-900/20 to-gray-800/10 border-gray-700/30 text-gray-300;
+}
 
- /* Category buttons in dark theme */
--:root.dark-theme button.bg-gradient-to-r.from-maroon.to-maroon\/80 {
-+html.dark button.bg-gradient-to-r.from-maroon.to-maroon\/80 {
-   background: linear-gradient(45deg, #000000, #333333);
- }
+/* Category buttons in dark theme */
+html.dark button.bg-gradient-to-r.from-maroon.to-maroon\/80 {
+  background: linear-gradient(45deg, #000000, #333333);
+}
 
--:root.dark-theme button.bg-white\/5 {
-+html.dark button.bg-white\/5 {
-   @apply bg-gray-900/10 hover:bg-gray-900/20;
- }
+html.dark button.bg-white\/5 {
+  @apply bg-gray-900/10 hover:bg-gray-900/20;
+}
 
- /* Star icon in dark theme */
--:root.dark-theme .text-maroon.fill-maroon {
-+html.dark .text-maroon.fill-maroon {
-   @apply text-white fill-white;
- }
+/* Star icon in dark theme */
+html.dark .text-maroon.fill-maroon {
+  @apply text-white fill-white;
+}
 
- /* Floating particles for dark theme */
--:root.dark-theme .dark-particles {
-+html.dark .dark-particles {
-   display: block;
- }
+/* Floating particles for dark theme */
+html.dark .dark-particles {
+  display: block;
+}
 
- .dark-particles {
-@@ .. @@
- }
+.dark-particles {
+  display: none;
+}
 
- /* Add these theme classes to your existing CSS */
--:root {
-+html {
-   --bg-color: #000000;
-   --text-color: #ffffff;
-   --accent-color: #8B0000;
-   --secondary-bg: rgba(255, 255, 255, 0.1);
- }
+/* Add these theme classes to your existing CSS */
+html {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --accent-color: #8B0000;
+  --secondary-bg: rgba(255, 255, 255, 0.1);
+}
 
--.light-theme {
-+html.light {
-   --bg-color: #ffffff;
-   --text-color: #000000;
-   --accent-color: #8B0000;
-   --secondary-bg: rgba(0, 0, 0, 0.05);
- }
+html.light {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #8B0000;
+  --secondary-bg: rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive icons */
+.responsive-icon {
+  @apply w-4 h-4 sm:w-3 sm:h-5 md:w-6 md:h-6;
+}
+
+.project-link-icon {
+  @apply w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300;
+}
+
+/* Project link container styling */
+.project-link-container {
+  @apply p-2.5 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full 
+         hover:bg-white/20 transition-all duration-300
+         hover:shadow-[0_0_15px_rgba(255,255,255,0.2)];
+}
+
+/* Enhanced mobile styling for project icons */
+@media (max-width: 768px) {
+  /* Larger project link icons for mobile */
+  .project-link-icon {
+    @apply w-6 h-6;
+  }
+  
+  /* Larger tap targets for mobile */
+  .project-link-container {
+    @apply p-3;
+  }
+}
+
+/* Add icon hover effects */
+.project-link-icon-github:hover {
+  @apply text-[#6e5494];
+}
+
+.project-link-icon-live:hover {
+  @apply text-maroon;
+}
+
+/* Enhanced Glass Morphism */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Animations */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: text-shimmer 2s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Enhanced Scroll Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #2563eb, #7c3aed);
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Enhanced Focus States */
+.focus-visible:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Improved Button Styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
+         text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 
+         transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 
+         focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.btn-secondary {
+  @apply bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-6 rounded-lg 
+         transition-all duration-300 border border-white/20 hover:border-white/40
+         focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2;
+}
+
+/* Enhanced Card Styles */
+.card-hover {
+  @apply transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl;
+}
+
+.card-glow {
+  @apply relative overflow-hidden;
+}
+
+.card-glow::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
+         transform -translate-x-full transition-transform duration-1000;
+}
+
+.card-glow:hover::before {
+  @apply translate-x-full;
+}
