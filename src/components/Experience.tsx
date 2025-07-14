@@ -21,7 +21,8 @@
 -    achievements: [
 -      'Built responsive web applications with React and modern CSS frameworks',
 -      'Implemented cross-browser compatibility and mobile-first design principles',
--      'Collaborated with design and backend teams to deliver seamless user experiences',
+-      'Collaborated w
+}ith design and backend teams to deliver seamless user experiences',
 -      'Optimized application performance and implemented best practices'
 -    ],
 -    type: 'work',
