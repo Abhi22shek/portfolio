@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
 import { createAccessibleButtonProps } from '../utils/a11y';
@@ -6,6 +6,39 @@ import DarkThemeParticles from './DarkThemeParticles';
 
 const Hero = () => {
   const [isDownloading, setIsDownloading] = useState(false);
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  const roles = [
+    'Full Stack Developer',
+    'UI/UX Designer',
+    'React Specialist',
+    'Frontend Engineer'
+  ];
+
+  // Typewriter effect
+  useEffect(() => {
+    const currentRole = roles[currentRoleIndex];
+    const timeout = setTimeout(() => {
+      if (isDeleting) {
+        setCurrentText(currentRole.substring(0, currentText.length - 1));
+        
+        if (currentText.length === 0) {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      } else {
+        setCurrentText(currentRole.substring(0, currentText.length + 1));
+        
+        if (currentText === currentRole) {
+          setTimeout(() => setIsDeleting(true), 2000); // Pause before deleting
+        }
+      }
+    }, isDeleting ? 50 : 100); // Faster deletion, slower typing
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentRoleIndex, roles]);
 
   const handleDownloadResume = () => {
     setIsDownloading(true);
@@ -159,78 +192,47 @@ const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-12"
+          className="space-y-16"
         >
-          {/* Enhanced Heading with Gradient Text */}
+          {/* Simplified Large Name */}
           <motion.div 
             variants={itemVariants}
-            className="space-y-6"
+            className="space-y-8"
           >
             <motion.h1 
-              className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent"
+              className="text-7xl md:text-9xl font-black text-white tracking-tight"
+              style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               Abhishek Borana
             </motion.h1>
 
-            <motion.div className="relative">
-              <motion.p 
-                className="text-2xl md:text-3xl text-blue-400 font-light"
-                animate={{
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
+            {/* Typewriter Role */}
+            <motion.div 
+              className="relative h-20 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+            >
+              <span 
+                className="text-3xl md:text-4xl text-blue-400 font-medium tracking-wide"
+                style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace' }}
               >
-                Full Stack Developer & UI/UX Designer
-              </motion.p>
-              
-              {/* Typing cursor effect */}
-              <motion.span
-                className="inline-block w-0.5 h-8 bg-blue-400 ml-2"
-                animate={{
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
+                {currentText}
+                <span className="animate-pulse text-blue-400">|</span>
+              </span>
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Glass Effect Description */}
+          {/* Download Button */}
           <motion.div 
             variants={itemVariants}
-            className="backdrop-blur-xl bg-gradient-to-r from-blue-900/20 via-indigo-900/20 to-purple-900/20 rounded-2xl p-8 max-w-2xl mx-auto border border-blue-500/20 shadow-2xl shadow-blue-500/10 relative overflow-hidden"
-            whileHover={{ scale: 1.02, y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Inner glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl" />
-            
-            <motion.p 
-              className="text-xl text-blue-100 relative z-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.8 }}
-            >
-              Crafting modern web experiences with clean code and innovative design solutions.
-            </motion.p>
-          </motion.div>
-
-          {/* Enhanced Buttons */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex justify-center"
           >
             <motion.button 
-              className="px-8 py-4 border-2 border-blue-500 text-blue-400 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center gap-3"
+              className="px-10 py-5 border-2 border-blue-500 text-blue-400 rounded-full text-lg font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center gap-4 backdrop-blur-sm bg-blue-500/5"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               {...downloadButtonProps}
@@ -248,16 +250,6 @@ const Hero = () => {
                 </>
               )}
             </motion.button>
-
-            <motion.a
-              href="#contact"
-              className="px-8 py-4 border-2 border-blue-500 text-blue-400 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Let's Talk
-              <FaArrowRight className="w-5 h-5" />
-            </motion.a>
           </motion.div>
 
           {/* Enhanced Social Icons */}
