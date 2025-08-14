@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TbHelmetOff } from 'react-icons/tb';
-import ThemeToggle from './ThemeToggle';
+import { TbBolt } from 'react-icons/tb';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [thunderActive, setThunderActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,18 +32,15 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
+  // Thunder effect trigger
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (isOpen && !target.closest('nav')) {
-        setIsOpen(false);
-      }
-    };
+    const thunderInterval = setInterval(() => {
+      setThunderActive(true);
+      setTimeout(() => setThunderActive(false), 300);
+    }, 5000);
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [isOpen]);
+    return () => clearInterval(thunderInterval);
+  }, []);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -66,62 +63,44 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact', icon: '📧' },
   ];
 
- const handleLinkClick = (href: string) => {
-  setIsOpen(false);
-  const element = document.querySelector(href);
-  if (element) {
-    const offset = -70; // Adjust based on your navbar height
-    const top = element.getBoundingClientRect().top + window.pageYOffset + offset;
+  const handleLinkClick = (href: string) => {
+    setIsOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = -70;
+      const top = element.getBoundingClientRect().top + window.pageYOffset + offset;
 
-    window.scrollTo({
-      top,
-      behavior: 'smooth'
-    });
-  }
-};
-
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      x: "100%",
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 40
-      }
-    },
-    open: {
-      opacity: 1,
-      x: "0%",
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 40
-      }
+      window.scrollTo({
+        top,
+        behavior: 'smooth'
+      });
     }
   };
 
-  const itemVariants = {
-    closed: {
-      opacity: 0,
-      x: 50,
-      transition: {
-        duration: 0.2
-      }
-    },
-    open: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    })
+  const toggleMobileMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsOpen(!isOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsOpen(false);
   };
 
   return (
     <>
+      {/* Thunder Background Effect */}
+      <AnimatePresence>
+        {thunderActive && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0, 1, 0] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-blue-500/5 pointer-events-none z-40"
+          />
+        )}
+      </AnimatePresence>
+
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -133,7 +112,7 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            {/* Enhanced Logo */}
+            {/* Enhanced Logo with Thunder */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -141,21 +120,31 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="text-2xl font-bold relative">
+              <div className="text-2xl font-bold relative flex items-center gap-2">
+                <motion.div
+                  animate={thunderActive ? { 
+                    color: ['#3b82f6', '#ffffff', '#3b82f6'],
+                    scale: [1, 1.1, 1]
+                  } : {}}
+                  transition={{ duration: 0.3 }}
+                >
+                  <TbBolt className="text-blue-400 w-7 h-7" />
+                </motion.div>
                 <span className="bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent">
                   ABHISHEK
                 </span>
                 <span className="text-blue-400 animate-pulse">.</span>
               </div>
               
-              {/* Glow effect on hover */}
+              {/* Enhanced glow effect */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={false}
+                animate={thunderActive ? { opacity: [0, 0.5, 0] } : {}}
+                transition={{ duration: 0.3 }}
               />
             </motion.div>
 
-            {/* Enhanced Desktop Navigation */}
+            {/* Enhanced Desktop Navigation with Thunder */}
             <div className="hidden md:flex items-center space-x-2">
               {navLinks.map((link, index) => (
                 <motion.button
@@ -164,7 +153,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => handleLinkClick(link.href)}
-                  className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 rounded-full group ${
+                  className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 rounded-full group overflow-hidden ${
                     activeSection === link.href.slice(1)
                       ? 'text-white bg-blue-500/20 shadow-lg shadow-blue-500/20'
                       : 'text-gray-300 hover:text-white hover:bg-white/10'
@@ -174,6 +163,15 @@ const Navbar = () => {
                 >
                   <span className="relative z-10">{link.name}</span>
                   
+                  {/* Thunder effect on active */}
+                  {activeSection === link.href.slice(1) && thunderActive && (
+                    <motion.div
+                      initial={{ x: '-100%', opacity: 0 }}
+                      animate={{ x: '100%', opacity: [0, 1, 0] }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+                    />
+                  )}
                   
                   {/* Active indicator */}
                   {activeSection === link.href.slice(1) && (
@@ -196,24 +194,41 @@ const Navbar = () => {
 
             {/* Enhanced Mobile Menu Button */}
             <motion.button
-              className="md:hidden relative p-3 text-white hover:text-blue-400 transition-colors duration-300 rounded-full hover:bg-white/10"
-              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden relative p-3 text-white hover:text-blue-400 transition-colors duration-300 rounded-full hover:bg-white/10 touch-manipulation"
+              onClick={toggleMobileMenu}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              style={{ 
+                WebkitTapHighlightColor: 'transparent',
+                touchAction: 'manipulation'
+              }}
             >
               <motion.div
                 animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
               >
                 {isOpen ? <RiCloseLine size={24} /> : <RiMenu3Line size={24} />}
               </motion.div>
+              
+              {/* Thunder effect on menu button */}
+              <AnimatePresence>
+                {thunderActive && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: [0, 1.5, 0], opacity: [0, 0.5, 0] }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-blue-400/30 rounded-full"
+                  />
+                )}
+              </AnimatePresence>
             </motion.button>
           </div>
         </div>
       </motion.nav>
 
       {/* Enhanced Mobile Navigation Overlay */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isOpen && (
           <>
             {/* Backdrop */}
@@ -221,62 +236,117 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
-              onClick={() => setIsOpen(false)}
+              onClick={closeMobileMenu}
+              style={{ touchAction: 'none' }}
             />
             
             {/* Mobile Menu */}
             <motion.div
-              variants={menuVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-gradient-to-br from-[#0a0a0f] via-[#0f1419] to-[#1a1a2e] z-50 md:hidden shadow-2xl"
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: "0%", opacity: 1 }}
+              exit={{ x: "100%", opacity: 0 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 30,
+                mass: 0.8
+              }}
+              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-gradient-to-br from-[#0a0a0f] via-[#0f1419] to-[#1a1a2e] z-50 md:hidden shadow-2xl border-l border-blue-500/20 overflow-hidden"
+              style={{ touchAction: 'pan-y' }}
             >
+              {/* Thunder Effect in Mobile Menu */}
+              <AnimatePresence>
+                {thunderActive && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ 
+                      opacity: [0, 0.3, 0, 0.3, 0],
+                      scale: [1, 1.02, 1]
+                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-purple-500/10"
+                  />
+                )}
+              </AnimatePresence>
+
               {/* Mobile Menu Header */}
-              <div className="flex items-center justify-between p-6 border-b border-blue-500/20">
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-xl font-bold"
-                >
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent">
-                    Menu
-                  </span>
-                </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+                className="flex items-center justify-between p-6 border-b border-blue-500/20 relative z-10"
+              >
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    animate={thunderActive ? { 
+                      rotate: [0, 15, -15, 0],
+                      scale: [1, 1.2, 1]
+                    } : {}}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <TbBolt className="text-blue-400 w-6 h-6" />
+                  </motion.div>
+                  <div className="text-xl font-bold">
+                    <span className="bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent">
+                      Menu
+                    </span>
+                  </div>
+                </div>
                 
                 <motion.button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 text-white hover:text-blue-400 transition-colors rounded-full hover:bg-white/10"
+                  onClick={closeMobileMenu}
+                  className="p-2 text-white hover:text-blue-400 transition-colors rounded-full hover:bg-white/10 touch-manipulation"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
+                  style={{ 
+                    WebkitTapHighlightColor: 'transparent',
+                    touchAction: 'manipulation'
+                  }}
                 >
                   <RiCloseLine size={24} />
                 </motion.button>
-              </div>
+              </motion.div>
 
               {/* Mobile Menu Items */}
-              <div className="py-8 px-6 space-y-2">
+              <div className="py-8 px-6 space-y-2 relative z-10">
                 {navLinks.map((link, index) => (
                   <motion.button
                     key={link.name}
-                    custom={index}
-                    variants={itemVariants}
-                    initial="closed"
-                    animate="open"
-                    exit="closed"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      delay: 0.1 + index * 0.1, 
+                      duration: 0.3,
+                      ease: "easeOut"
+                    }}
                     onClick={() => handleLinkClick(link.href)}
-                    className={`w-full flex items-center space-x-4 px-4 py-4 text-left font-medium transition-all duration-300 rounded-xl group ${
+                    className={`w-full flex items-center space-x-4 px-4 py-4 text-left font-medium transition-all duration-300 rounded-xl group overflow-hidden touch-manipulation ${
                       activeSection === link.href.slice(1)
                         ? 'text-white bg-gradient-to-r from-blue-500/30 to-indigo-500/20 shadow-lg shadow-blue-500/20 border border-blue-500/30'
                         : 'text-gray-300 hover:text-white hover:bg-white/10 border border-transparent hover:border-blue-500/20'
                     }`}
                     whileHover={{ scale: 1.02, x: 5 }}
                     whileTap={{ scale: 0.98 }}
+                    style={{ 
+                      WebkitTapHighlightColor: 'transparent',
+                      touchAction: 'manipulation'
+                    }}
                   >
-                    <span className="text-2xl">{link.icon}</span>
-                    <div className="flex-1">
+                    {/* Thunder effect on active mobile item */}
+                    {activeSection === link.href.slice(1) && thunderActive && (
+                      <motion.div
+                        initial={{ x: '-100%' }}
+                        animate={{ x: '100%' }}
+                        transition={{ duration: 0.6 }}
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"
+                      />
+                    )}
+                    
+                    <span className="text-2xl relative z-10">{link.icon}</span>
+                    <div className="flex-1 relative z-10">
                       <span className="text-lg">{link.name}</span>
                       {activeSection === link.href.slice(1) && (
                         <motion.div
@@ -289,7 +359,7 @@ const Navbar = () => {
                     
                     {/* Arrow indicator */}
                     <motion.div
-                      className="text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity relative z-10"
                       animate={{ x: activeSection === link.href.slice(1) ? 0 : -10 }}
                     >
                       →
@@ -302,8 +372,8 @@ const Navbar = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="absolute bottom-0 left-0 right-0 p-6 border-t border-blue-500/20"
+                transition={{ delay: 0.6, duration: 0.3 }}
+                className="absolute bottom-0 left-0 right-0 p-6 border-t border-blue-500/20 relative z-10"
               >
                 <div className="text-center">
                   <p className="text-sm text-gray-400 mb-2">Let's connect</p>
@@ -313,10 +383,14 @@ const Navbar = () => {
                         key={social}
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.7 + index * 0.1 }}
-                        className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center border border-blue-500/30"
+                        transition={{ delay: 0.7 + index * 0.1, duration: 0.3 }}
+                        className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center border border-blue-500/30 touch-manipulation"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        style={{ 
+                          WebkitTapHighlightColor: 'transparent',
+                          touchAction: 'manipulation'
+                        }}
                       >
                         <span className="text-xs text-blue-400 font-bold">
                           {social[0]}
@@ -329,8 +403,6 @@ const Navbar = () => {
             </motion.div>
           </>
         )}
-{/* Theme toggle component removed due to undefined reference */}
-       
       </AnimatePresence>
     </>
   );
