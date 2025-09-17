@@ -147,28 +147,6 @@ const Hero = () => {
       {/* Enhanced Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
 
-      {/* Bolt-Style Accent Lines */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-500/30 to-transparent"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 2, delay: 1 }}
-        />
-        <motion.div 
-          className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-500/30 to-transparent"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 2, delay: 1.5 }}
-        />
-        <motion.div 
-          className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 2, delay: 2 }}
-        />
-      </div>
-
       {/* Floating Elements */}
       <motion.div 
         className="absolute top-20 left-20 w-2 h-2 bg-blue-400 rounded-full"
