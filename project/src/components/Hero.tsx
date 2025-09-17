@@ -10,6 +10,17 @@ const Hero = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
   
   const roles = [
     'Full Stack Developer',
@@ -107,12 +118,16 @@ const Hero = () => {
         animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 180, 360],
-          opacity: [0.3, 0.5, 0.3]
+          opacity: [0.3, 0.5, 0.3],
+          x: (mousePosition.x - (window.innerWidth / 2)) * -0.02,
+          y: (mousePosition.y - (window.innerHeight / 2)) * -0.02,
         }}
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
+          x: { type: 'spring', stiffness: 100, damping: 20 },
+          y: { type: 'spring', stiffness: 100, damping: 20 },
         }}
       />
       
@@ -121,13 +136,17 @@ const Hero = () => {
         animate={{
           scale: [1.2, 1, 1.2],
           rotate: [360, 180, 0],
-          opacity: [0.2, 0.4, 0.2]
+          opacity: [0.2, 0.4, 0.2],
+          x: (mousePosition.x - (window.innerWidth / 2)) * 0.03,
+          y: (mousePosition.y - (window.innerHeight / 2)) * 0.03,
         }}
         transition={{
           duration: 10,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 2
+          delay: 2,
+          x: { type: 'spring', stiffness: 100, damping: 20 },
+          y: { type: 'spring', stiffness: 100, damping: 20 },
         }}
       />
       
@@ -135,13 +154,17 @@ const Hero = () => {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-gradient-to-br from-blue-500/10 via-indigo-500/15 to-purple-500/10 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.1, 1],
-          opacity: [0.1, 0.3, 0.1]
+          opacity: [0.1, 0.3, 0.1],
+          x: (mousePosition.x - (window.innerWidth / 2)) * 0.01,
+          y: (mousePosition.y - (window.innerHeight / 2)) * 0.01,
         }}
         transition={{
           duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 4
+          delay: 4,
+          x: { type: 'spring', stiffness: 100, damping: 20 },
+          y: { type: 'spring', stiffness: 100, damping: 20 },
         }}
       />
 

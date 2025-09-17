@@ -49,16 +49,12 @@ const CustomCursor = () => {
 
   const variants = {
     default: {
-      x: position.x - 8,
-      y: position.y - 8,
       height: 16,
       width: 16,
       backgroundColor: 'rgba(29, 78, 216, 0.7)', // blue-600
       mixBlendMode: 'difference' as const,
     },
     hover: {
-      x: position.x - 24,
-      y: position.y - 24,
       height: 48,
       width: 48,
       backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -74,12 +70,12 @@ const CustomCursor = () => {
       animate={variant}
       style={{
         display: visible ? 'block' : 'none',
+        x: position.x - (variant === 'default' ? 8 : 24),
+        y: position.y - (variant === 'default' ? 8 : 24),
       }}
       transition={{
-        x: { type: 'spring', stiffness: 500, damping: 30 },
-        y: { type: 'spring', stiffness: 500, damping: 30 },
-        width: { duration: 0.15 },
-        height: { duration: 0.15 },
+        width: { duration: 0.2 },
+        height: { duration: 0.2 },
       }}
     />
   );
