@@ -9,10 +9,20 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    // Hide default cursor
+    document.body.style.cursor = 'none';
+
+    return () => {
+      // Restore default cursor on unmount
+      document.body.style.cursor = 'auto';
+    };
+  }, []);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -21,6 +31,7 @@ function App() {
   return (
    
       <div className="app-container">
+        <CustomCursor />
         <AnimatePresence mode="wait">
           {isLoading ? (
             <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
