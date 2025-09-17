@@ -63,7 +63,14 @@ const comingSoonProjects = [
 ];
 
 const Projects = () => {
-  const [projects, setProjects] = useState(initialProjects);
+  const [projects, setProjects] = useState(() => {
+    const savedProjects = localStorage.getItem('projects');
+    if (savedProjects) {
+      return JSON.parse(savedProjects);
+    } else {
+      return initialProjects;
+    }
+  });
   const [activeCategory, setActiveCategory] = useState('all');
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [isAdminMode, setIsAdminMode] = useState(false);
@@ -80,6 +87,10 @@ const Projects = () => {
     live: '',
     featured: true,
   });
+
+  useEffect(() => {
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }, [projects]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
