@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
 import { createAccessibleButtonProps } from '../utils/a11y';
 import DarkThemeParticles from './DarkThemeParticles';
@@ -10,18 +10,28 @@ const Hero = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
+  const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
+      mouseX.set(event.clientX);
+      mouseY.set(event.clientY);
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
-  
+  }, [mouseX, mouseY]);
+
+  const orb1X = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 0], [-20, 20]);
+  const orb1Y = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 0], [-20, 20]);
+  const orb2X = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 0], [30, -30]);
+  const orb2Y = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 0], [30, -30]);
+  const orb3X = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 0], [-10, 10]);
+  const orb3Y = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 0], [-10, 10]);
+
   const roles = [
     'Full Stack Developer',
     'UI/UX Designer',
@@ -115,56 +125,47 @@ const Hero = () => {
       {/* Animated Background Orbs */}
       <motion.div 
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-600/20 via-indigo-600/25 to-cyan-600/15 rounded-full blur-3xl"
+        style={{ x: orb1X, y: orb1Y }}
         animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 180, 360],
           opacity: [0.3, 0.5, 0.3],
-          x: (mousePosition.x - (window.innerWidth / 2)) * -0.02,
-          y: (mousePosition.y - (window.innerHeight / 2)) * -0.02,
         }}
         transition={{
           duration: 8,
           repeat: Infinity,
           ease: "easeInOut",
-          x: { type: 'spring', stiffness: 100, damping: 20 },
-          y: { type: 'spring', stiffness: 100, damping: 20 },
         }}
       />
       
       <motion.div 
         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-l from-purple-600/20 via-blue-600/25 to-indigo-600/15 rounded-full blur-3xl"
+        style={{ x: orb2X, y: orb2Y }}
         animate={{
           scale: [1.2, 1, 1.2],
           rotate: [360, 180, 0],
           opacity: [0.2, 0.4, 0.2],
-          x: (mousePosition.x - (window.innerWidth / 2)) * 0.03,
-          y: (mousePosition.y - (window.innerHeight / 2)) * 0.03,
         }}
         transition={{
           duration: 10,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 2,
-          x: { type: 'spring', stiffness: 100, damping: 20 },
-          y: { type: 'spring', stiffness: 100, damping: 20 },
         }}
       />
       
       <motion.div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-gradient-to-br from-blue-500/10 via-indigo-500/15 to-purple-500/10 rounded-full blur-3xl"
+        style={{ x: orb3X, y: orb3Y }}
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.1, 0.3, 0.1],
-          x: (mousePosition.x - (window.innerWidth / 2)) * 0.01,
-          y: (mousePosition.y - (window.innerHeight / 2)) * 0.01,
         }}
         transition={{
           duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 4,
-          x: { type: 'spring', stiffness: 100, damping: 20 },
-          y: { type: 'spring', stiffness: 100, damping: 20 },
         }}
       />
 
