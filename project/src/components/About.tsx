@@ -1,38 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AnimatedText from './AnimatedText';
-import {
-  Html5,
-  Css3,
-  FileJson,
-  ReactLogo,
-  NextjsIcon,
-  NodejsIcon,
-  MongoDBIcon,
-  PostgreSQLIcon,
-  ExpressIcon,
-  TailwindIcon,
-  Git,
-  Github,
-  WebSocketIcon,
-  SocketIOIcon,
-} from '../utils/logo';
-
 const skills = [
-  { name: "HTML", icon: Html5, color: "#E34F26", level: 90 },
-  { name: "CSS", icon: Css3, color: "#1572B6", level: 85 },
-  { name: "JavaScript", icon: FileJson, color: "#F7DF1E", level: 88 },
-  { name: "React.js", icon: ReactLogo, color: "#61DAFB", level: 92 },
-  { name: "Next.js", icon: NextjsIcon, color: "#000000", level: 85 },
-  { name: "Node.js", icon: NodejsIcon, color: "#339933", level: 87 },
-  { name: "MongoDB", icon: MongoDBIcon, color: "#47A248", level: 82 },
-  { name: "PostgreSQL", icon: PostgreSQLIcon, color: "#336791", level: 84 },
-  { name: "Express.js", icon: ExpressIcon, color: "#000000", level: 86 },
-  { name: "Tailwind", icon: TailwindIcon, color: "#38B2AC", level: 90 },
-  { name: "Git", icon: Git, color: "#F05032", level: 88 },
-  { name: "GitHub", icon: Github, color: "#181717", level: 89 },
-  { name: "WebSocket", icon: WebSocketIcon, color: "#105050", level: 89 },
-  { name: "Socket.IO", icon: SocketIOIcon, color: "#105010", level: 87 },
+  { name: "HTML", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-html-5-logo-4386865-3644137.png' },
+  { name: "CSS", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-css-3-logo-4386867-3644139.png' },
+  { name: "JavaScript", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-javascript-3d-icon-png-download-7577991.png' },
+  { name: "React.js", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-react-js-logo-3d-icon-png-download-4642758.png' },
+  { name: "Node.js", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-node-js-logo-9294867-7578013.png' },
+  { name: "Tailwind", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-tailwind-css-logo-4386878-3644150.png' },
+  { name: "MongoDB", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-mongodb-logo-4386873-3644145.png' },
+  { name: "GitHub", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-github-logo-4386864-3644136.png' },
+  { name: "Next.js", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-next-js-logo-4386870-3644142.png' },
+  { name: "PostgreSQL", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-postgresql-logo-4386876-3644148.png' },
+  { name: "Express.js", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-express-js-logo-4386879-3644151.png' },
+  { name: "Git", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-git-logo-4386869-3644141.png' },
+  { name: "WebSocket", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-api-3d-icon-7577994.png' },
+  { name: "Socket.IO", icon: 'https://cdn3d.iconscout.com/3d/free/thumb/free-cloud-service-3d-icon-7578000.png' },
 ];
 
 const About = () => {
@@ -91,9 +74,11 @@ const About = () => {
             viewport={{ once: true }}
             className="md:col-span-1 bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 flex items-center justify-center"
           >
-            <div className="w-48 h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center">
-              <span className="text-gray-400">Profile Pic</span>
-            </div>
+            <img
+              src="https://cdn3d.iconscout.com/3d/free/thumb/free-man-with-laptop-and-coffee-cup-3d-illustration-4041113-3342047.png"
+              alt="3D Avatar of a developer"
+              className="w-full h-full object-contain"
+            />
           </motion.div>
         </div>
 
@@ -112,9 +97,8 @@ const About = () => {
         </div>
 
         {/* Skills Bento Grid */}
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {skills.slice(0, 8).map((skill, index) => {
-            const Icon = skill.icon;
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {skills.map((skill, index) => {
             return (
               <motion.div
                 key={skill.name}
@@ -122,14 +106,12 @@ const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl flex flex-col items-center justify-center gap-4 border border-white/10 text-center"
+                className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl flex flex-col items-center justify-center gap-4 border border-white/10 text-center aspect-square"
               >
-                <Icon
-                  size={40}
-                  style={{ color: skill.color }}
-                  className="drop-shadow-lg"
-                />
-                <h3 className="text-white font-semibold text-sm">{skill.name}</h3>
+                {skill.icon && (
+                  <img src={skill.icon} alt={`${skill.name} 3D Icon`} className="w-16 h-16 object-contain" />
+                )}
+                <h3 className="text-white font-semibold text-sm mt-auto">{skill.name}</h3>
               </motion.div>
             );
           })}
