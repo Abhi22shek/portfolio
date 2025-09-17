@@ -149,19 +149,19 @@ const Hero = () => {
 
       {/* Bolt-Style Accent Lines */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
+        <motion.div
           className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-500/30 to-transparent"
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 2, delay: 1 }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-500/30 to-transparent"
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 2, delay: 1.5 }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
@@ -201,7 +201,6 @@ const Hero = () => {
           >
             <motion.h1 
               className="text-7xl md:text-9xl font-black text-white tracking-tight"
-              style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
