@@ -1,36 +1,14 @@
 import { useState, useEffect } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
 import { createAccessibleButtonProps } from '../utils/a11y';
 import DarkThemeParticles from './DarkThemeParticles';
-import Magnetic from './Magnetic';
 
 const Hero = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-
-  const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
-  const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
-
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      mouseX.set(event.clientX);
-      mouseY.set(event.clientY);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [mouseX, mouseY]);
-
-  const orb1X = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 0], [-20, 20]);
-  const orb1Y = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 0], [-20, 20]);
-  const orb2X = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 0], [30, -30]);
-  const orb2Y = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 0], [30, -30]);
-  const orb3X = useTransform(mouseX, [0, typeof window !== 'undefined' ? window.innerWidth : 0], [-10, 10]);
-  const orb3Y = useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 0], [-10, 10]);
 
   const roles = [
     'Full Stack Developer',
@@ -125,47 +103,44 @@ const Hero = () => {
       {/* Animated Background Orbs */}
       <motion.div 
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-600/20 via-indigo-600/25 to-cyan-600/15 rounded-full blur-3xl"
-        style={{ x: orb1X, y: orb1Y }}
         animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 180, 360],
-          opacity: [0.3, 0.5, 0.3],
+          opacity: [0.3, 0.5, 0.3]
         }}
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut"
         }}
       />
       
       <motion.div 
         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-l from-purple-600/20 via-blue-600/25 to-indigo-600/15 rounded-full blur-3xl"
-        style={{ x: orb2X, y: orb2Y }}
         animate={{
           scale: [1.2, 1, 1.2],
           rotate: [360, 180, 0],
-          opacity: [0.2, 0.4, 0.2],
+          opacity: [0.2, 0.4, 0.2]
         }}
         transition={{
           duration: 10,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 2,
+          delay: 2
         }}
       />
       
       <motion.div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-gradient-to-br from-blue-500/10 via-indigo-500/15 to-purple-500/10 rounded-full blur-3xl"
-        style={{ x: orb3X, y: orb3Y }}
         animate={{
           scale: [1, 1.1, 1],
-          opacity: [0.1, 0.3, 0.1],
+          opacity: [0.1, 0.3, 0.1]
         }}
         transition={{
           duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 4,
+          delay: 4
         }}
       />
 
@@ -264,31 +239,30 @@ const Hero = () => {
               { Icon: FaLinkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/abhishekb2202', color: 'from-blue-600 to-blue-800' },
               { Icon: FaTwitter, label: 'Twitter', href: 'https://x.com/Abhishe22437482', color: 'from-cyan-600 to-blue-600' }
             ].map(({ Icon, label, href, color }, index) => (
-              <Magnetic key={label}>
-                <motion.a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-4 rounded-full bg-gradient-to-r ${color} text-white hover:scale-110 transition-all duration-300 group shadow-lg shadow-blue-500/20 relative overflow-hidden`}
-                  whileHover={{
-                    scale: 1.15,
-                    rotate: 5,
-                    boxShadow: "0 15px 30px rgba(59, 130, 246, 0.4)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2 + index * 0.1, duration: 0.5 }}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-white/20 rounded-full"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <Icon className="w-6 h-6 relative z-10" />
-                </motion.a>
-              </Magnetic>
+              <motion.a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-4 rounded-full bg-gradient-to-r ${color} text-white hover:scale-110 transition-all duration-300 group shadow-lg shadow-blue-500/20 relative overflow-hidden`}
+                whileHover={{
+                  scale: 1.15,
+                  rotate: 5,
+                  boxShadow: "0 15px 30px rgba(59, 130, 246, 0.4)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2 + index * 0.1, duration: 0.5 }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-white/20 rounded-full"
+                  initial={{ scale: 0 }}
+                  whileHover={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <Icon className="w-6 h-6 relative z-10" />
+              </motion.a>
             ))}
           </motion.div>
         </motion.div>
