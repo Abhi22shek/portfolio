@@ -178,7 +178,7 @@ const Hero = () => {
             className="space-y-8"
           >
             <motion.h1 
-              className="text-7xl md:text-9xl font-black text-white tracking-tight"
+              className="text-7xl md:text-9xl font-black tracking-tight bg-gradient-to-b from-white to-neutral-500 bg-clip-text text-transparent"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
