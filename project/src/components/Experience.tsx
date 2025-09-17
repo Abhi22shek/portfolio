@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import AnimatedText from './AnimatedText';
 import {
   BiBriefcase,
   BiSolidGraduation,
@@ -45,6 +46,13 @@ const experiences = [
 ];
 
 const Experience = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center start"]
+  });
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
     <section id="experience" className="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
       {/* Background Effects */}
@@ -53,26 +61,27 @@ const Experience = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Experience & Education
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            My journey in technology, from education to professional experience.
-          </p>
-        </motion.div>
+        <div className="text-center mb-16">
+          <AnimatedText
+            el="h2"
+            text="Experience & Education"
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+          />
+          <AnimatedText
+            el="p"
+            text="My journey in technology, from education to professional experience."
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+          />
+        </div>
 
         {/* Timeline */}
-        <div className="max-w-4xl mx-auto">
+        <div ref={ref} className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-maroon via-blue-500 to-maroon opacity-20"></div>
+            <motion.div
+              style={{ scaleY }}
+              className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-maroon via-blue-500 to-maroon opacity-20 origin-top"
+            />
             
             {experiences.map((exp, index) => {
               const Icon = exp.icon;

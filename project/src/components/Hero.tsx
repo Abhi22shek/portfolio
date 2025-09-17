@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaDownload } from 'react-icons/fa';
 import { createAccessibleButtonProps } from '../utils/a11y';
 import DarkThemeParticles from './DarkThemeParticles';
+import Magnetic from './Magnetic';
 
 const Hero = () => {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -239,30 +240,31 @@ const Hero = () => {
               { Icon: FaLinkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/abhishekb2202', color: 'from-blue-600 to-blue-800' },
               { Icon: FaTwitter, label: 'Twitter', href: 'https://x.com/Abhishe22437482', color: 'from-cyan-600 to-blue-600' }
             ].map(({ Icon, label, href, color }, index) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-4 rounded-full bg-gradient-to-r ${color} text-white hover:scale-110 transition-all duration-300 group shadow-lg shadow-blue-500/20 relative overflow-hidden`}
-                whileHover={{ 
-                  scale: 1.15, 
-                  rotate: 5,
-                  boxShadow: "0 15px 30px rgba(59, 130, 246, 0.4)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2 + index * 0.1, duration: 0.5 }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-white/20 rounded-full"
-                  initial={{ scale: 0 }}
-                  whileHover={{ scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <Icon className="w-6 h-6 relative z-10" />
-              </motion.a>
+              <Magnetic key={label}>
+                <motion.a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-4 rounded-full bg-gradient-to-r ${color} text-white hover:scale-110 transition-all duration-300 group shadow-lg shadow-blue-500/20 relative overflow-hidden`}
+                  whileHover={{
+                    scale: 1.15,
+                    rotate: 5,
+                    boxShadow: "0 15px 30px rgba(59, 130, 246, 0.4)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2 + index * 0.1, duration: 0.5 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-white/20 rounded-full"
+                    initial={{ scale: 0 }}
+                    whileHover={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <Icon className="w-6 h-6 relative z-10" />
+                </motion.a>
+              </Magnetic>
             ))}
           </motion.div>
         </motion.div>
