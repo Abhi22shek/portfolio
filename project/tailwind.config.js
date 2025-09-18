@@ -9,22 +9,7 @@ export default {
         heading: ['Poppins', 'sans-serif'],
       },
       colors: {
-        maroon: {
-          DEFAULT: 'rgb(var(--maroon-rgb) / <alpha-value>)',
-          dark: 'var(--dark-maroon)',
-        },
-        primary: {
-          DEFAULT: '#e11d48',
-          dark: '#f43f5e',
-        },
-        secondary: {
-          DEFAULT: '#2563eb',
-          dark: '#3b82f6',
-        },
-        accent: {
-          DEFAULT: '#9333ea',
-          dark: '#a855f7',
-        },
+        primary: "#2c3e50",
       },
       animation: {
         'gradient-x': 'gradient-x 15s ease infinite',
@@ -82,6 +67,20 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["luxury"],
+    themes: [
+      {
+        platinum: {
+          "primary": "#2c3e50",
+          "secondary": "#34495e",
+          "accent": "#bdc3c7",
+          "neutral": "#34495e",
+          "base-100": "#ecf0f1",
+          "info": "#3abff8",
+          "success": "#36d399",
+          "warning": "#fbbd23",
+          "error": "#f87272",
+        },
+      },
+    ],
   },
 };
