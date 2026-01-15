@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Johnson",
+    "title": "Product Manager",
+    "company": "TechCorp Solutions",
+    "testimonial": "Abhishek delivered exceptional work on our web application. His attention to detail and ability to translate complex requirements into intuitive user interfaces is remarkable. The project was completed on time and exceeded our expectations.",
+    "rating": 5,
+    "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+  },
+  {
+    "id": 2,
+    "name": "Michael Chen",
+    "title": "CTO",
+    "company": "StartupHub",
+    "testimonial": "Working with Abhishek was a game-changer for our startup. He built a scalable chat application that handles thousands of concurrent users seamlessly. His expertise in both frontend and backend development is impressive.",
+    "rating": 5,
+    "image": "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+  },
+  {
+    "id": 3,
+    "name": "Emily Rodriguez",
+    "title": "UI/UX Designer",
+    "company": "Creative Agency",
+    "testimonial": "Abhishek has an excellent eye for design and user experience. He transformed our design mockups into pixel-perfect, responsive web applications. His collaboration skills and technical expertise make him a valuable team member.",
+    "rating": 5,
+    "image": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+  },
+  {
+    "id": 4,
+    "name": "David Kumar",
+    "title": "Senior Developer",
+    "company": "WebSolutions Inc",
+    "testimonial": "I had the pleasure of mentoring Abhishek during his internship. His learning ability and problem-solving skills are outstanding. He quickly adapted to our tech stack and contributed meaningful code from day one.",
+    "rating": 5,
+    "image": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+  }
+]
